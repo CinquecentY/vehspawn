@@ -18,6 +18,7 @@ class com.rockstargames.gtav.levelDesign.vehspawn.Screen
    }
    function handleButtonInput(inputID)
    {
+      
    }
    function handleButtonInputRelease(inputID)
    {

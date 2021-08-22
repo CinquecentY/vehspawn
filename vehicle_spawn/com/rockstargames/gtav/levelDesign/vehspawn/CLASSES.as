@@ -64,7 +64,9 @@ class com.rockstargames.gtav.levelDesign.vehspawn.CLASSES extends com.rockstarga
          if( currentSelection.slice(0,currentSelection.length-1) == "VEH_CLASS_")
          {
             this.showNextScreen();
+            
          }
+            
       }
    }
    function handleMouseScrollInput(y, isSlowingDown)

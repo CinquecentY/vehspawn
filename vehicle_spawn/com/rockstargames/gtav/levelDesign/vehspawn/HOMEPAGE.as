@@ -1,6 +1,6 @@
 ﻿class com.rockstargames.gtav.levelDesign.vehspawn.HOMEPAGE extends com.rockstargames.gtav.levelDesign.vehspawn.Screen
 {
-   static var PROCEED = 1
+   static var PROCEED = 100;
    function HOMEPAGE(app, viewContainer, cursor)
    {
       super(app,viewContainer,cursor,"HOMEPAGE");
@@ -38,6 +38,7 @@
             this.showNextScreen();
          }
       }
+      
    }
    function showNextScreen()
    {

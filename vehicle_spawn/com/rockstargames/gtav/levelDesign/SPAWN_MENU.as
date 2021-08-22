@@ -25,6 +25,7 @@
    var VEH_LIST= 2;
    var SCREEN_CLASSES = [com.rockstargames.gtav.levelDesign.vehspawn.HOMEPAGE,com.rockstargames.gtav.levelDesign.vehspawn.CLASSES,com.rockstargames.gtav.levelDesign.vehspawn.VEHLIST];   
    var vehclassList = [];
+   var vehList = [];
    
    function SPAWN_MENU()
    {
@@ -47,6 +48,7 @@
       this.cursor = new com.rockstargames.gtav.levelDesign.vehspawn.Cursor(_loc3_,_loc2_,this.displayConfig);
       this.lastClickedButtonID = -1;
       this.vehclassList = [];
+      this.vehList = [];
       showScreen(this.HOMEPAGE);
    }
    
@@ -63,6 +65,11 @@
    {
       var card = new com.rockstargames.gtav.levelDesign.vehspawn.Card(id,label);
       this.vehclassList.push(card);
+   }
+   function ADD_VEHICLE(id,label)
+   {
+      var card = new com.rockstargames.gtav.levelDesign.vehspawn.Card(id,label);
+      this.vehList.push(card);
    }
 
    function SET_PLAYER_NAME(str)
@@ -109,6 +116,7 @@
    {
       if(this.inputReceived)
       {
+         this.CONTENT.dummy.htmlText = this.cursor.getTargetIDUnderCursor();
          return this.cursor.getTargetIDUnderCursor();
       }
       return this.lastClickedButtonID;
