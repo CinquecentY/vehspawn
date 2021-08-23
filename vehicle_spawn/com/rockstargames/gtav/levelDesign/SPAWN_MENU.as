@@ -63,12 +63,12 @@
 
    function ADD_VEH_CLASS(id,label)
    {
-      var card = new com.rockstargames.gtav.levelDesign.vehspawn.Card(id,label);
+      var card = new com.rockstargames.gtav.levelDesign.vehspawn.Card(Math.abs(id),label);
       this.vehclassList.push(card);
    }
    function ADD_VEHICLE(id,label)
    {
-      var card = new com.rockstargames.gtav.levelDesign.vehspawn.Card(id,label);
+      var card = new com.rockstargames.gtav.levelDesign.vehspawn.Card(Math.abs(id),label);
       this.vehList.push(card);
    }
 
@@ -120,6 +120,15 @@
          return this.cursor.getTargetIDUnderCursor();
       }
       return this.lastClickedButtonID;
+   }
+
+   function SHOW_CLASSES_SCREEN()
+   {
+      showScreen(this.CLASSES);
+   }
+   function SHOW_VEH_LIST_SCREEN()
+   {
+      this.showScreen(this.VEH_LIST);
    }
 
    function showScreen(screenID)

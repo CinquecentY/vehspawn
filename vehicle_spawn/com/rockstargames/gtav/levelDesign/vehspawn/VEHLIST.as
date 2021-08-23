@@ -23,8 +23,8 @@ class com.rockstargames.gtav.levelDesign.vehspawn.VEHLIST extends com.rockstarga
       list._y = this.view.listMask._y;
       list.setMask(this.view.listMask);
       var col = 4;
-      var width = 285;
-      var height = 248;
+      var width = 280;
+      var height = 250;
       for (i=0;i < this.app.vehList.length;i++)
       {
          var card = this.app.vehList[i];
@@ -46,24 +46,17 @@ class com.rockstargames.gtav.levelDesign.vehspawn.VEHLIST extends com.rockstarga
       card.view = view;
       card.button = new com.rockstargames.gtav.levelDesign.vehspawn.Button(card.get_id(),view);
    }
-   /*function handleButtonInput(inputID)
+   
+   function handleButtonInput(inputID)
    {
       if(inputID == com.rockstargames.gtav.levelDesign.SPAWN_MENU.ACCEPT || inputID == com.rockstargames.gtav.levelDesign.SPAWN_MENU.LEFT_MOUSE)
       {
-         var _loc0_ = this.app.GET_CURRENT_SELECTION();
-         if( _loc0_ === this.VEH_CLASS_0.id)
-         {
-            com.rockstargames.gtav.levelDesign.SPAWN_MENU.playSound("Log_In");
-            this.showNextScreen();
-         }
-         else
-            com.rockstargames.gtav.levelDesign.SPAWN_MENU.playSound("Log_In");
+         var currentSelection = this.app.GET_CURRENT_SELECTION();
+         if(currentSelection != -1)
+            com.rockstargames.gtav.levelDesign.SPAWN_MENU.playSound("Type_Enter");
       }
    }
-   function showNextScreen()
-   {
-      this.app.showScreen(this.app.VEHLIST);
-   }*/
+   
    function updateButtons()
    {
       var buttons = [];
