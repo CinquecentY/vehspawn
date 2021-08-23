@@ -3,18 +3,15 @@ const ScaleForm = require('scaleform');
 
 const vehicles = require('vehspawn/vehicleHashes');
 var vehicleClassList = setVehicleClassList();
-var vehicleList = setVehicleList(1);
+
 mp.events.addCommand("vehspawn",()=>{
     let scaleform = new ScaleForm('vehicle_spawn');
     scaleform.callFunction('SET_PLAYER_NAME',mp.players.local.name);
     addVehicleClass(scaleform);
-    addVehicle(scaleform);
     mp.events.add('render', () => {
       if(scaleform)
       {
-        /*mp.game.controls.disableAllControlActions(0);
-        mp.game.controls.setInputExclusive(2, 239);
-        mp.game.controls.setInputExclusive(2, 240);*/
+        disableActions();
         scaleform.callFunction('SET_MOUSE_INPUT',mp.game.controls.getControlNormal(2, 239),mp.game.controls.getControlNormal(2, 240));
         scaleform.renderFullscreen();
         if(mp.game.controls.isControlPressed(0,51))
@@ -26,7 +23,21 @@ mp.events.addCommand("vehspawn",()=>{
         {
           scaleform.callFunction('SET_INPUT_EVENT',237);
           let val = scaleform.callFunctionReturn('GET_CURRENT_SELECTION',"number");
-          mp.gui.chat.push(val.toString());
+          if(val !=-1)
+          {
+            if(val <= 23)
+            {
+            addVehicle(scaleform,setVehicleList(val));
+            scaleform.callFunction('SHOW_VEH_LIST_SCREEN');
+            }
+            else
+            {
+              mp.vehicles.new(val, new mp.Vector3(mp.players.local.position.x,mp.players.local.position.y-3,mp.players.local.position.z+2));
+              scaleform.dispose();
+              scaleform = null;
+              enableActions();
+            }
+          }
         }
         if(mp.game.controls.isControlPressed(2,241))
         {
@@ -41,7 +52,18 @@ mp.events.addCommand("vehspawn",()=>{
     })
   });
 
-function addVehicle(scaleform) {
+function disableActions() {
+  mp.game.controls.disableAllControlActions(0);
+  mp.game.controls.setInputExclusive(2, 239);
+  mp.game.controls.setInputExclusive(2, 240);
+  mp.game.controls.setInputExclusive(2,237);
+}
+
+function enableActions(){
+  mp.game.controls.enableAllControlActions(0);
+}
+
+function addVehicle(scaleform,vehicleList) {
   for (let i = 0; i < vehicleList.length; i++) {
     scaleform.callFunction('ADD_VEHICLE', vehicleList[i][0], vehicleList[i][1]);
   }
@@ -58,6 +80,7 @@ function addVehicleClass(scaleform) {
     var array=[];
     for (let i = 0; i < 23; i++)
     {
+      mp.gui.chat.push(i);
       array.push([i,mp.game.ui.getLabelText(`VEH_CLASS_${i}`)]);
     }
     return array;

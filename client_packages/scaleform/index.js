@@ -57,7 +57,7 @@ class BasicScaleform {
             }
         });
         let methodReturn = mp.game.graphics.popScaleformMovieFunction();
-        //while(!mp.game.invoke('0x768FF8961BA904D6',methodReturn)) mp.game.wait(0);
+        while(!mp.game.invoke('0x768FF8961BA904D6',methodReturn)) mp.game.wait(0);
         switch (type) {
             case "string":
                 return mp.game.graphics.sittingTv(methodReturn);
