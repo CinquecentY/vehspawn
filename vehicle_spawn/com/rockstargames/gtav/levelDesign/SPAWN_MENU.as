@@ -17,8 +17,8 @@
    static var RIGHT_MOUSE = 238;
    static var SCROLL_UP_MOUSE = 241;
    static var SCROLL_DOWN_MOUSE = 242;
-   static var KEY_DOWN = 300;
-   static var KEY_UP = 301;
+   static var KEY_DOWN = 187;
+   static var KEY_UP = 188;
 
    var HOMEPAGE = 0;
    var CLASSES = 1
@@ -116,7 +116,6 @@
    {
       if(this.inputReceived)
       {
-         this.CONTENT.dummy.htmlText = this.cursor.getTargetIDUnderCursor();
          return this.cursor.getTargetIDUnderCursor();
       }
       return this.lastClickedButtonID;
