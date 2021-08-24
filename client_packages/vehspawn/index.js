@@ -23,6 +23,7 @@ mp.events.addCommand("vehspawn",()=>{
         {
           scaleform.callFunction('SET_INPUT_EVENT',237);
           let val = scaleform.callFunctionReturn('GET_CURRENT_SELECTION',"number");
+          mp.gui.chat.push(val.toString());
           if(val !=-1)
           {
             if(val <= 23)
@@ -32,7 +33,7 @@ mp.events.addCommand("vehspawn",()=>{
             }
             else
             {
-              mp.vehicles.new(val, new mp.Vector3(mp.players.local.position.x,mp.players.local.position.y-3,mp.players.local.position.z+2));
+              mp.events.callRemote("vehspawn_Spawn",val);
               scaleform.dispose();
               scaleform = null;
               enableActions();
@@ -45,18 +46,30 @@ mp.events.addCommand("vehspawn",()=>{
         }
         if(mp.game.controls.isControlPressed(2,242))
         {
-          scaleform.callFunction('SET_SCROLL_INPUT',mp.game.controls.getControlNormal(2,242))
+          scaleform.callFunction('SET_SCROLL_INPUT',-mp.game.controls.getControlNormal(2,242))
         }
-        
+        if(mp.game.controls.isControlPressed(2,188))
+        {
+          scaleform.callFunction('SET_INPUT_EVENT',188);
+        }
+        if(mp.game.controls.isControlPressed(2,187))
+        {
+          scaleform.callFunction('SET_INPUT_EVENT',187);
+        }
       }  
     })
   });
 
 function disableActions() {
   mp.game.controls.disableAllControlActions(0);
-  mp.game.controls.setInputExclusive(2, 239);
-  mp.game.controls.setInputExclusive(2, 240);
+  mp.game.controls.setInputExclusive(2,239);
+  mp.game.controls.setInputExclusive(2,240);
   mp.game.controls.setInputExclusive(2,237);
+  mp.game.controls.setInputExclusive(2,242);
+  mp.game.controls.setInputExclusive(2,188);
+  mp.game.controls.setInputExclusive(2,187);
+  mp.game.controls.setInputExclusive(2,242);
+  mp.game.controls.setInputExclusive(2,242);
 }
 
 function enableActions(){
