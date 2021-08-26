@@ -16,7 +16,7 @@ class com.rockstargames.gtav.levelDesign.vehspawn.ImageManager
       {
          if(this.txdRefs[txd] != "loading")
          {
-            com.rockstargames.ui.game.GameInterface.call("REQUEST_TXD_AND_ADD_REF",com.rockstargames.ui.game.GameInterface.GENERIC_TYPE,"SPAWN_MENU",txd,id,true);
+            com.rockstargames.ui.game.GameInterface.call("REQUEST_TXD_AND_ADD_REF",com.rockstargames.ui.game.GameInterface.GENERIC_TYPE,"VEHICLE_SPAWN",txd,id,true);
             this.txdRefs[txd] = "loading";
          }
          this.imageQueue.push({txd:txd,id:id,path:String(imageTextField)});
@@ -62,7 +62,7 @@ class com.rockstargames.gtav.levelDesign.vehspawn.ImageManager
    {
       for(var _loc2_ in this.txdRefs)
       {
-         com.rockstargames.ui.game.GameInterface.call("REMOVE_TXD_REF",com.rockstargames.ui.game.GameInterface.GENERIC_TYPE,"SPAWN_MENU",_loc2_);
+         com.rockstargames.ui.game.GameInterface.call("REMOVE_TXD_REF",com.rockstargames.ui.game.GameInterface.GENERIC_TYPE,"VEHICLE_SPAWN",_loc2_);
       }
    }
 }

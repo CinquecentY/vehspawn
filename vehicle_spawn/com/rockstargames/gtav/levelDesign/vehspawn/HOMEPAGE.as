@@ -29,12 +29,12 @@
 
    function handleButtonInput(inputID)
    {
-      if(inputID == com.rockstargames.gtav.levelDesign.SPAWN_MENU.ACCEPT || inputID == com.rockstargames.gtav.levelDesign.SPAWN_MENU.LEFT_MOUSE)
+      if(inputID == com.rockstargames.gtav.levelDesign.VEHICLE_SPAWN.ACCEPT || inputID == com.rockstargames.gtav.levelDesign.VEHICLE_SPAWN.LEFT_MOUSE)
       {
          var curr_selection = this.app.GET_CURRENT_SELECTION();
          if( curr_selection == this.proceedButton.id)
          {
-            com.rockstargames.gtav.levelDesign.SPAWN_MENU.playSound("Log_In");
+            com.rockstargames.gtav.levelDesign.VEHICLE_SPAWN.playSound("Log_In");
             this.showNextScreen();
          }
       }

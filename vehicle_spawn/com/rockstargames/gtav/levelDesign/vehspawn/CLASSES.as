@@ -45,6 +45,7 @@ class com.rockstargames.gtav.levelDesign.vehspawn.CLASSES extends com.rockstarga
    }
    function initListItem(view, card)
    {
+      this.app.imageManager.addImage("veh_img","320px-Impaler",view.image);
       view.label.text = card.label;
       card.view = view;
       card.button = new com.rockstargames.gtav.levelDesign.vehspawn.Button(card.get_id(),view);
@@ -54,18 +55,18 @@ class com.rockstargames.gtav.levelDesign.vehspawn.CLASSES extends com.rockstarga
    {
       switch(inputID)
       {
-         case com.rockstargames.gtav.levelDesign.SPAWN_MENU.ACCEPT:
-         case com.rockstargames.gtav.levelDesign.SPAWN_MENU.LEFT_MOUSE:
+         case com.rockstargames.gtav.levelDesign.VEHICLE_SPAWN.ACCEPT:
+         case com.rockstargames.gtav.levelDesign.VEHICLE_SPAWN.LEFT_MOUSE:
          var currentSelection = this.app.GET_CURRENT_SELECTION();
          if(currentSelection != -1)
-            com.rockstargames.gtav.levelDesign.SPAWN_MENU.playSound("Type_Enter");
+            com.rockstargames.gtav.levelDesign.VEHICLE_SPAWN.playSound("Type_Enter");
          break;
-         case com.rockstargames.gtav.levelDesign.SPAWN_MENU.KEY_UP:
-            this.activeScrollKey = com.rockstargames.gtav.levelDesign.SPAWN_MENU.KEY_UP;
+         case com.rockstargames.gtav.levelDesign.VEHICLE_SPAWN.KEY_UP:
+            this.activeScrollKey = com.rockstargames.gtav.levelDesign.VEHICLE_SPAWN.KEY_UP;
             this.scrollListFromKeyboard(-1);
             break;
-         case com.rockstargames.gtav.levelDesign.SPAWN_MENU.KEY_DOWN:
-            this.activeScrollKey = com.rockstargames.gtav.levelDesign.SPAWN_MENU.KEY_DOWN;
+         case com.rockstargames.gtav.levelDesign.VEHICLE_SPAWN.KEY_DOWN:
+            this.activeScrollKey = com.rockstargames.gtav.levelDesign.VEHICLE_SPAWN.KEY_DOWN;
             this.scrollListFromKeyboard(1);
             break;
       }

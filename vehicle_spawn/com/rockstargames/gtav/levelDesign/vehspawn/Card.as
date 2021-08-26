@@ -1,9 +1,10 @@
 class com.rockstargames.gtav.levelDesign.vehspawn.Card
 {
-   function Card(id, label)
+   function Card(id, label,txd)
    {
       this.id = id;
       this.label = label;
+      this.txd = txd;
    }
    function get_id()
    {
@@ -12,5 +13,9 @@ class com.rockstargames.gtav.levelDesign.vehspawn.Card
    function get_label()
    {
       return this.label;
+   }
+   function get_txd()
+   {
+      return this.txd;
    }
 }
