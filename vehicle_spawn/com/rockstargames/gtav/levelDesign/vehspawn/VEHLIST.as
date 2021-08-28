@@ -42,7 +42,7 @@ class com.rockstargames.gtav.levelDesign.vehspawn.VEHLIST extends com.rockstarga
    }
    function initListItem(view, card)
    {
-      this.app.imageManager.addImage("veh_img","320px-Impaler",view.image);
+      this.app.imageManager.addImage("veh_img"+card.get_txd(),card.get_id(),view.image);
       view.label.text = card.label;
       card.view = view;
       card.button = new com.rockstargames.gtav.levelDesign.vehspawn.Button(card.get_id(),view);
