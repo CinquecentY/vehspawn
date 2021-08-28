@@ -78,15 +78,26 @@ function enableActions(){
 
 function addVehicle(scaleform,vehicleList) {
   for (let i = 0; i < vehicleList.length; i++) {
-    scaleform.callFunction('ADD_VEHICLE', vehicleList[i][0], vehicleList[i][1]);
+    scaleform.callFunction('ADD_VEHICLE', vehicleList[i]["hash"], vehicleList[i]["label"],vehicleList[i]["txd"]);
   }
 }
 
 function addVehicleClass(scaleform) {
   for (let i = 0; i < vehicleClassList.length; i++) {
-    scaleform.callFunction('ADD_VEH_CLASS', vehicleClassList[i][0], vehicleClassList[i][1]);
+    scaleform.callFunction('ADD_VEH_CLASS', vehicleClassList[i]["id"], vehicleClassList[i]["label"],vehicleClassList[i]["txd"],vehicleClassList[i]["hash"]);
   }
 }
+
+  function getFirstVehicleFromClass(vehclass)
+  {
+    for (let i in vehicles){
+      if(mp.game.vehicle.getVehicleClassFromName(vehicles[i]["hash"]) == vehclass)
+      {
+        return vehicles[i];
+      }
+    }
+    return 0;
+  }
 
   function setVehicleClassList()
   {
@@ -94,7 +105,9 @@ function addVehicleClass(scaleform) {
     for (let i = 0; i < 23; i++)
     {
       mp.gui.chat.push(i);
-      array.push([i,mp.game.ui.getLabelText(`VEH_CLASS_${i}`)]);
+      let vehicle = getFirstVehicleFromClass(i)
+      array.push({id:i,label:mp.game.ui.getLabelText(`VEH_CLASS_${i}`),txd:vehicle["txd"],hash:vehicle["hash"]})
+      //array.push([i,mp.game.ui.getLabelText(`VEH_CLASS_${i}`),vehicle["txd"],vehicle["hash"]]);
     }
     return array;
   }
@@ -102,10 +115,11 @@ function addVehicleClass(scaleform) {
   {
     var array = [];
     for (let i in vehicles){
-      if(mp.game.vehicle.getVehicleClassFromName(vehicles[i]) == vehclass)
+      if(mp.game.vehicle.getVehicleClassFromName(vehicles[i]["hash"]) == vehclass)
       {
-        let displayName = mp.game.vehicle.getDisplayNameFromVehicleModel(vehicles[i]);
-        array.push([vehicles[i],mp.game.ui.getLabelText(displayName)]);
+        let displayName = mp.game.vehicle.getDisplayNameFromVehicleModel(vehicles[i]["hash"]);
+        array.push({hash: vehicles[i]["hash"],label:mp.game.ui.getLabelText(displayName),txd:vehicles[i]["txd"]})
+        //array.push([vehicles[i]["hash"],mp.game.ui.getLabelText(displayName),vehicles[i]["txd"]]);
       }
     }
     return array;
