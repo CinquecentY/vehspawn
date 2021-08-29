@@ -1,5 +1,7 @@
 class com.rockstargames.gtav.levelDesign.vehspawn.VEHLIST extends com.rockstargames.gtav.levelDesign.vehspawn.Screen
 {
+   static var CLOSE = "close";
+   static var PRECEDENT = "precedent";
    function VEHLIST(app, viewContainer, cursor)
    {
       super(app,viewContainer,cursor,"VEHLIST");
@@ -10,6 +12,8 @@ class com.rockstargames.gtav.levelDesign.vehspawn.VEHLIST extends com.rockstarga
       this.app.SET_MOUSE_INPUT(0.605,0.57);
       this.view._visible = true;
       this.initList();
+      this.closeButton = new com.rockstargames.gtav.levelDesign.vehspawn.Button(com.rockstargames.gtav.levelDesign.vehspawn.VEHLIST.CLOSE,this.view.closeBtn);
+      this.precButton = new com.rockstargames.gtav.levelDesign.vehspawn.Button(com.rockstargames.gtav.levelDesign.vehspawn.VEHLIST.PRECEDENT,this.view.precBtn);
       this.updateButtons();
    }
    function __get__isReady()
@@ -57,6 +61,8 @@ class com.rockstargames.gtav.levelDesign.vehspawn.VEHLIST extends com.rockstarga
          var currentSelection = this.app.GET_CURRENT_SELECTION();
          if(currentSelection != -1)
             com.rockstargames.gtav.levelDesign.VEHICLE_SPAWN.playSound("Type_Enter");
+         if(currentSelection == this.precButton.id)
+            this.showPrevScreen();
          break;
          case com.rockstargames.gtav.levelDesign.VEHICLE_SPAWN.KEY_UP:
             this.activeScrollKey = com.rockstargames.gtav.levelDesign.VEHICLE_SPAWN.KEY_UP;
@@ -83,8 +89,16 @@ class com.rockstargames.gtav.levelDesign.vehspawn.VEHLIST extends com.rockstarga
             buttons.push(button);
          }
       }
+      buttons.push(this.closeButton,this.precButton);
       this.cursor.setTargetRects(buttons);
    }
+
+   function showPrevScreen()
+   {
+      this.app.SHOW_CLASSES_SCREEN();
+      this.app.vehList = [];
+   }
+
    function dispose()
    {
       com.rockstargames.ui.tweenStar.TweenStarLite.removeTweenOf(this.view);

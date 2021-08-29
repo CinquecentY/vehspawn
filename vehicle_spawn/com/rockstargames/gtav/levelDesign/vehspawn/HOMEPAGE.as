@@ -18,8 +18,9 @@
 
    function initButtons()
    {
-      this.proceedButton = new com.rockstargames.gtav.levelDesign.vehspawn.Button(com.rockstargames.gtav.levelDesign.vehspawn.HOMEPAGE.PROCEED,this.view.proceedBtn)
-      this.cursor.setTargetRects([this.proceedButton]);
+      this.proceedButton = new com.rockstargames.gtav.levelDesign.vehspawn.Button(com.rockstargames.gtav.levelDesign.vehspawn.HOMEPAGE.PROCEED,this.view.proceedBtn);
+      this.closeButton = new com.rockstargames.gtav.levelDesign.vehspawn.Button(com.rockstargames.gtav.levelDesign.vehspawn.HOMEPAGE.CLOSE,this.view.closeBtn);
+      this.cursor.setTargetRects([this.proceedButton,this.closeButton]);
    }
 
    function setPLAYER_NAME(str)

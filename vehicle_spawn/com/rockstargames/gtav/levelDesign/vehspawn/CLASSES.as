@@ -12,8 +12,8 @@ class com.rockstargames.gtav.levelDesign.vehspawn.CLASSES extends com.rockstarga
       this.app.SET_MOUSE_INPUT(0.605,0.57);
       this.view._visible = true;
       this.initList();
+      this.closeButton = new com.rockstargames.gtav.levelDesign.vehspawn.Button(com.rockstargames.gtav.levelDesign.vehspawn.CLASSES.CLOSE,this.view.closeBtn);
       this.updateButtons();
-      
    }
    function __get__isReady()
    {
@@ -45,7 +45,7 @@ class com.rockstargames.gtav.levelDesign.vehspawn.CLASSES extends com.rockstarga
    }
    function initListItem(view, card)
    {
-      this.app.imageManager.addImage("veh_img"+card.get_txd(),card.get_hash(),view.image);
+      this.app.imageManager.addImage("veh_img"+card.get_txd(),card.get_vehname(),view.image);
       view.label.text = card.label;
       card.view = view;
       card.button = new com.rockstargames.gtav.levelDesign.vehspawn.Button(card.get_id(),view);
@@ -86,6 +86,7 @@ class com.rockstargames.gtav.levelDesign.vehspawn.CLASSES extends com.rockstarga
             buttons.push(button);
          }
       }
+      buttons.push(this.closeButton);
       this.cursor.setTargetRects(buttons);
    }
    function dispose()
@@ -94,7 +95,7 @@ class com.rockstargames.gtav.levelDesign.vehspawn.CLASSES extends com.rockstarga
       super.dispose();
    }
 
-   function handleMouseScrollInput(y,isSlowingDown)
+   function handleMouseScrollInput(y)
    {
       var _loc4_ = (y - 130) / 130;
       _loc4_ *= 2;
