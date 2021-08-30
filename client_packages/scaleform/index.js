@@ -68,14 +68,6 @@ class BasicScaleform {
             default:
                 return "nonce";
         }
-            /*if(mp.game.graphics.sittingTv(methodReturn) != "")
-                return mp.game.graphics.sittingTv(methodReturn);
-            if(typeof mp.game.invoke('0xD80A80346A45D761',methodReturn) == "boolean")
-                return mp.game.invoke('0xD80A80346A45D761',methodReturn);
-            if(typeof mp.game.invoke('0x2DE7EFA66B906036',methodReturn) == "number")
-                return mp.game.invoke('0x2DE7EFA66B906036',methodReturn);
-            else
-                return "nonce";*/
     }
 
     renderFullscreen() {

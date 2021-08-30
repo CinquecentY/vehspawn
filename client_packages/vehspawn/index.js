@@ -24,22 +24,15 @@ mp.events.addCommand("vehspawn",()=>{
         {
           scaleform.callFunction('SET_INPUT_EVENT',237);
           let val = scaleform.callFunctionReturn('GET_CURRENT_SELECTION',returntype);
-          mp.gui.chat.push("return :"+val.toString());
-          if(val !=-1 && val !=-"")
+          if(val !=-1 && val !="")
           {
-            if(val==999 || val == "close")
-            {
-              scaleform = closeScaleform(scaleform);
-            }
-            if(val == "precedent")
-              returntype = "number";
             if(val <= 23)
             {
             addVehicle(scaleform,setVehicleList(val));
             scaleform.callFunction('SHOW_VEH_LIST_SCREEN');
             returntype = "string";
             }
-            else if(typeof val == "number")
+            else
             {
               mp.events.callRemote("vehspawn_Spawn",val);
               scaleform = closeScaleform(scaleform);
@@ -118,7 +111,6 @@ function addVehicleClass(scaleform) {
     var array=[];
     for (let i = 0; i < 23; i++)
     {
-      //mp.gui.chat.push(i.toString());
       let vehicle = getFirstVehicleFromClass(i)
       array.push({
         id:i,
@@ -126,8 +118,6 @@ function addVehicleClass(scaleform) {
         txd:vehicle["txd"],
         vehname:vehicle["name"]
       });
-      //mp.gui.chat.push(mp.game.joaat(vehicle["name"]).toString());
-      //array.push([i,mp.game.ui.getLabelText(`VEH_CLASS_${i}`),vehicle["txd"],vehicle["hash"]]);
     }
     return array;
   }
@@ -144,7 +134,6 @@ function addVehicleClass(scaleform) {
         label:mp.game.ui.getLabelText(displayName),
         txd:i["txd"]
         });
-        //array.push([vehicles[i]["hash"],mp.game.ui.getLabelText(displayName),vehicles[i]["txd"]]);
       }
     }
     return array;
