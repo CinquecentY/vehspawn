@@ -95,8 +95,8 @@ class com.rockstargames.gtav.levelDesign.vehspawn.VEHLIST extends com.rockstarga
 
    function showPrevScreen()
    {
-      this.app.SHOW_CLASSES_SCREEN();
       this.app.vehList = [];
+      this.app.SHOW_CLASSES_SCREEN();
    }
 
    function dispose()

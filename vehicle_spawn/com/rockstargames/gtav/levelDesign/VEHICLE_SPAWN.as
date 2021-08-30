@@ -116,7 +116,7 @@
    {
       if(this.inputReceived)
       {
-         this.CONTENT.dummy.htmlText = this.cursor.getTargetIDUnderCursor();
+         //this.CONTENT.dummy.htmlText = this.cursor.getTargetIDUnderCursor();
          return this.cursor.getTargetIDUnderCursor();
       }
       return this.lastClickedButtonID;
