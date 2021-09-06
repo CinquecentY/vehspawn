@@ -1,6 +1,6 @@
 class com.rockstargames.gtav.levelDesign.vehspawn.CLASSES extends com.rockstargames.gtav.levelDesign.vehspawn.Screen
 {
-      static var SCROLL_SPEED = 20;
+   static var SCROLL_SPEED = 20;
    function CLASSES(app, viewContainer, cursor)
    {
       super(app,viewContainer,cursor,"CLASSES");
@@ -12,8 +12,9 @@ class com.rockstargames.gtav.levelDesign.vehspawn.CLASSES extends com.rockstarga
       this.app.SET_MOUSE_INPUT(0.605,0.57);
       this.view._visible = true;
       this.initList();
-      this.closeButton = new com.rockstargames.gtav.levelDesign.vehspawn.Button(com.rockstargames.gtav.levelDesign.vehspawn.CLASSES.CLOSE,this.view.closeBtn);
+      //this.closeButton = new com.rockstargames.gtav.levelDesign.vehspawn.Button(com.rockstargames.gtav.levelDesign.vehspawn.CLASSES.CLOSE,this.view.closeBtn);
       this.updateButtons();
+      this.resetScroll();
    }
    function __get__isReady()
    {
@@ -86,7 +87,7 @@ class com.rockstargames.gtav.levelDesign.vehspawn.CLASSES extends com.rockstarga
             buttons.push(button);
          }
       }
-      buttons.push(this.closeButton);
+      //buttons.push(this.closeButton);
       this.cursor.setTargetRects(buttons);
    }
    function dispose()
@@ -103,6 +104,7 @@ class com.rockstargames.gtav.levelDesign.vehspawn.CLASSES extends com.rockstarga
       var _loc3_ = _loc5_ - this.scrollTimeDelta;
       _loc3_ = Math.max(16,Math.min(40,_loc3_));
       var _loc6_ = com.rockstargames.gtav.levelDesign.vehspawn.CLASSES.SCROLL_SPEED * _loc3_ / 32;
+      this.app.CONTENT.dummy.htmlText = _loc4_;
       this.scrollTimeDelta = _loc5_;
       this.scrollList((- _loc6_) * _loc4_);
       if(y != 127)
@@ -132,7 +134,6 @@ class com.rockstargames.gtav.levelDesign.vehspawn.CLASSES extends com.rockstarga
    }
    function scrollList(dy)
    {
-      this.app.CONTENT.dummy.htmlText = dy;
       var _loc2_ = this.view.listMask._y;
       var _loc3_ = this.view.listMask._y + this.view.listMask._height - this.view.list._height;
       var _loc4_ = this.view.list._y + dy;

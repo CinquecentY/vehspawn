@@ -1,7 +1,7 @@
 class com.rockstargames.gtav.levelDesign.vehspawn.VEHLIST extends com.rockstargames.gtav.levelDesign.vehspawn.Screen
 {
-   static var CLOSE = "close";
-   static var PRECEDENT = "precedent";
+   //static var CLOSE = "close";
+   //static var PRECEDENT = "precedent";
    function VEHLIST(app, viewContainer, cursor)
    {
       super(app,viewContainer,cursor,"VEHLIST");
@@ -12,9 +12,10 @@ class com.rockstargames.gtav.levelDesign.vehspawn.VEHLIST extends com.rockstarga
       this.app.SET_MOUSE_INPUT(0.605,0.57);
       this.view._visible = true;
       this.initList();
-      this.closeButton = new com.rockstargames.gtav.levelDesign.vehspawn.Button(com.rockstargames.gtav.levelDesign.vehspawn.VEHLIST.CLOSE,this.view.closeBtn);
-      this.precButton = new com.rockstargames.gtav.levelDesign.vehspawn.Button(com.rockstargames.gtav.levelDesign.vehspawn.VEHLIST.PRECEDENT,this.view.precBtn);
+      //this.closeButton = new com.rockstargames.gtav.levelDesign.vehspawn.Button(com.rockstargames.gtav.levelDesign.vehspawn.VEHLIST.CLOSE,this.view.closeBtn);
+      //this.precButton = new com.rockstargames.gtav.levelDesign.vehspawn.Button(com.rockstargames.gtav.levelDesign.vehspawn.VEHLIST.PRECEDENT,this.view.precBtn);
       this.updateButtons();
+      this.resetScroll();
    }
    function __get__isReady()
    {
@@ -61,8 +62,8 @@ class com.rockstargames.gtav.levelDesign.vehspawn.VEHLIST extends com.rockstarga
          var currentSelection = this.app.GET_CURRENT_SELECTION();
          if(currentSelection != -1)
             com.rockstargames.gtav.levelDesign.VEHICLE_SPAWN.playSound("Type_Enter");
-         if(currentSelection == this.precButton.id)
-            this.showPrevScreen();
+         /*if(currentSelection == this.precButton.id)
+            this.showPrevScreen();*/
          break;
          case com.rockstargames.gtav.levelDesign.VEHICLE_SPAWN.KEY_UP:
             this.activeScrollKey = com.rockstargames.gtav.levelDesign.VEHICLE_SPAWN.KEY_UP;
@@ -89,7 +90,7 @@ class com.rockstargames.gtav.levelDesign.vehspawn.VEHLIST extends com.rockstarga
             buttons.push(button);
          }
       }
-      buttons.push(this.closeButton,this.precButton);
+      //buttons.push(/*this.closeButton,*/this.precButton);
       this.cursor.setTargetRects(buttons);
    }
 
@@ -112,6 +113,7 @@ class com.rockstargames.gtav.levelDesign.vehspawn.VEHLIST extends com.rockstarga
       var _loc3_ = _loc5_ - this.scrollTimeDelta;
       _loc3_ = Math.max(16,Math.min(40,_loc3_));
       var _loc6_ = com.rockstargames.gtav.levelDesign.vehspawn.CLASSES.SCROLL_SPEED * _loc3_ / 32;
+      this.app.CONTENT.dummy.htmlText = _loc4_;
       this.scrollTimeDelta = _loc5_;
       this.scrollList((- _loc6_) * _loc4_);
       if(y != 127)
@@ -141,7 +143,6 @@ class com.rockstargames.gtav.levelDesign.vehspawn.VEHLIST extends com.rockstarga
    }
    function scrollList(dy)
    {
-      this.app.CONTENT.dummy.htmlText = dy;
       var _loc2_ = this.view.listMask._y;
       var _loc3_ = this.view.listMask._y + this.view.listMask._height - this.view.list._height;
       var _loc4_ = this.view.list._y + dy;
