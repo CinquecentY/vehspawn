@@ -1,9 +1,10 @@
 
 # Vehicle Spawner using Scaleform
-This vehicle spawner works entirely on GTA V's Scaleform using Flash Professional CS6, this project was made as an excercise and a showcase of the many things that can be done with Scaleform to reproduce the same UI compenents present in the base game.
+This is a vehicle spawner menu made under Scaleform, the native GUI for GTA V, based on Flash, which makes up nearly all of the displays used in the game. This menu works similar to vehicle websites in GTA Online, like Legendary Motorsport. I made this mostly as an exercise to mimic the games' UI functionalities, however there's still a lot to delve into.
 
 This project features:
-- Built-in cursor with supported mouse inputs.
-- Selectionable buttons.
-- Scaleform return/push functions
-- Image import from .ytd files
+- Built-in cursor with supported mouse inputs and scroll.
+- Multiple pages.
+- Selectable buttons.
+- Improved Scaleform code to handle return variables.
+- Image import from .ytd files.
