@@ -12,7 +12,7 @@ mp.events.addCommand("vehspawn",()=>{
     mp.events.add('render', () => {
       if(scaleform)
       {
-        disableActions();
+        //disableActions();
         scaleform.callFunction('SET_MOUSE_INPUT',mp.game.controls.getControlNormal(2, 239),mp.game.controls.getControlNormal(2, 240));
         scaleform.renderFullscreen();
         if(mp.game.controls.isControlPressed(0,51))
@@ -41,11 +41,11 @@ mp.events.addCommand("vehspawn",()=>{
         }
         if(mp.game.controls.isControlPressed(2,241))
         {
-          scaleform.callFunction('SET_SCROLL_INPUT',-1)
+          scaleform.callFunction('SET_SCROLL_INPUT',0);
         }
         if(mp.game.controls.isControlPressed(2,242))
         {
-          scaleform.callFunction('SET_SCROLL_INPUT',1)
+          scaleform.callFunction('SET_SCROLL_INPUT',260);
         }
         if(mp.game.controls.isControlPressed(2,188))
         {
@@ -70,12 +70,12 @@ function disableActions() {
   mp.game.controls.disableAllControlActions(0);
   mp.game.controls.setInputExclusive(2,239);
   mp.game.controls.setInputExclusive(2,240);
+  mp.game.controls.setInputExclusive(0,51);
   mp.game.controls.setInputExclusive(2,237);
-  mp.game.controls.setInputExclusive(2,242);
+  mp.game.controls.setInputExclusive(2,241); // Scroll inputs don't work if disableAllControlActions(0) is enabled for some reason, if you see this message and found a fix please pm me
+  mp.game.controls.setInputExclusive(2,242); // Thanxxxxxx
   mp.game.controls.setInputExclusive(2,188);
   mp.game.controls.setInputExclusive(2,187);
-  mp.game.controls.setInputExclusive(2,241);
-  mp.game.controls.setInputExclusive(2,51);
 }
 
 function enableActions(){

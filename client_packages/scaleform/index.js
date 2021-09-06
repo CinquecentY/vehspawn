@@ -6,56 +6,13 @@ class BasicScaleform {
 
     callFunction(functionName, ...args) {
         mp.game.graphics.pushScaleformMovieFunction(this.handle, functionName);
-
-        args.forEach(arg => {
-            switch(typeof arg) {
-                case "string": {
-                    mp.game.graphics.pushScaleformMovieFunctionParameterString(arg);
-                    break;
-                }
-
-                case "boolean": {
-                    mp.game.graphics.pushScaleformMovieFunctionParameterBool(arg);
-                    break;
-                }
-
-                case "number": {
-                    if(Number(arg) === arg && arg % 1 !== 0) {
-                        mp.game.graphics.pushScaleformMovieFunctionParameterFloat(arg);
-                    } else {
-                        mp.game.graphics.pushScaleformMovieFunctionParameterInt(arg);
-                    }
-                }
-            }
-        });
-
+        this.argsHandler(args);
         mp.game.graphics.popScaleformMovieFunctionVoid();
     }
 
     callFunctionReturn(functionName,type, ...args) {
         mp.game.graphics.pushScaleformMovieFunction(this.handle, functionName);
-
-        args.forEach(arg => {
-            switch(typeof arg) {
-                case "string": {
-                    mp.game.graphics.pushScaleformMovieFunctionParameterString(arg);
-                    break;
-                }
-
-                case "boolean": {
-                    mp.game.graphics.pushScaleformMovieFunctionParameterBool(arg);
-                    break;
-                }
-
-                case "number": {
-                    if(Number(arg) === arg && arg % 1 !== 0) {
-                        mp.game.graphics.pushScaleformMovieFunctionParameterFloat(arg);
-                    } else {
-                        mp.game.graphics.pushScaleformMovieFunctionParameterInt(arg);
-                    }
-                }
-            }
-        });
+        this.argsHandler(args);
         let methodReturn = mp.game.graphics.popScaleformMovieFunction();
         while(!mp.game.invoke('0x768FF8961BA904D6',methodReturn)) mp.game.wait(0);
         switch (type) {
@@ -68,6 +25,30 @@ class BasicScaleform {
             default:
                 return "nonce";
         }
+    }
+
+    argsHandler(args) {
+        args.forEach(arg => {
+            switch (typeof arg) {
+                case "string": {
+                    mp.game.graphics.pushScaleformMovieFunctionParameterString(arg);
+                    break;
+                }
+
+                case "boolean": {
+                    mp.game.graphics.pushScaleformMovieFunctionParameterBool(arg);
+                    break;
+                }
+
+                case "number": {
+                    if (Number(arg) === arg && arg % 1 !== 0) {
+                        mp.game.graphics.pushScaleformMovieFunctionParameterFloat(arg);
+                    } else {
+                        mp.game.graphics.pushScaleformMovieFunctionParameterInt(arg);
+                    }
+                }
+            }
+        });
     }
 
     renderFullscreen() {
