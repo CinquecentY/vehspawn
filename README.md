@@ -12,3 +12,5 @@ This project features:
 - Selectable buttons.
 - Improved Scaleform code to handle return variables.
 - Image import from .ytd files.
+
+**Vehicle images taken from the Rage MP Wiki and the GTA Wiki.**
